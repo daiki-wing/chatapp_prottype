@@ -1,8 +1,9 @@
+package ChatRoomFolder;
 public class Chatroom_AutoRes extends ChatRoom{
     protected static final String defaultRes = "うい";
     private static final String name = "Ui_Chan";
     public Chatroom_AutoRes(){
-        super("AutoRes_Room", ChatRoom.RecordDirectry +"/AutoResRoom.txt");
+        super("AutoRes_Room");
     }
 
     @Override

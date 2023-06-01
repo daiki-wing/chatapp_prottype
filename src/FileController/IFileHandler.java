@@ -1,3 +1,4 @@
+package FileController;
 public interface IFileHandler{
     public boolean isFileExsit();
     public void createFile();
