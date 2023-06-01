@@ -12,7 +12,7 @@ public class ChatRoom{
 
     public ChatRoom(String room_name){
         this.room_Name = room_name;
-        this.fileHandler = new FileHandler(ChatRoom.getChatroomFile(room_name).getName());
+        this.fileHandler = new FileHandler(RecordDirectry + "/" + room_name + extension);
 
         if(!isChatRoomExsit()){
             createRoom();
@@ -54,14 +54,15 @@ public class ChatRoom{
         for(int i = 0; i < room_files.length; i++){
             if(i != 0) System.out.print(" ");
             String room_name = room_files[i].getName();
-            System.out.println(room_name.substring(0,room_name.lastIndexOf('.')));
+            System.out.print(room_name.substring(0,room_name.lastIndexOf('.')));
         }
+        System.out.println("");
     }
 
     public static boolean isExistChatroomFile(String file_name){
         File[] existfiles = getExistChatroomFiles();
         for(File file : existfiles){
-            if(file_name + extension != file.getName()) continue;
+            if(!(file_name + extension).equals(file.getName())) continue;
             return true;
         }
         return false;

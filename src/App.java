@@ -18,31 +18,47 @@ private static String my_name;
         else{            
             //MyAccountが存在しないなら入力を基にアカウントを作る
             println_Message("初めまして、名前を入力してください.");
-            String line = inputMessage();
-            String my_name = line.split(",")[1];
+            my_name = inputMessage();
             MyAccountDomainService.createMyAcount(my_name);
             println_Message("こんにちは！" + my_name + "さん！\nアカウントを作成しました.");
-            Chatroom_AutoRes autoRes = new Chatroom_AutoRes();
+            new Chatroom_AutoRes();
         }
 
-        Thread.sleep(1000);
+        Thread.sleep(1000); //少し待つ
 
+        //ルーム選択 or ルーム作成
         String line_roomname = "";
         while(true){
-            println_Message("入室するルームを入力してください");
+            println_Message("入室するルームか作成するルームを入力してください");
             print_Message("現在、存在するルーム: ");
-            ChatRoom.outputExistChatroomName();
+            ChatRoom.outputExistChatroomName(); //存在するルームを出力
+            
             line_roomname = inputMessage();
-            if(ChatRoom.isExistChatroomFile(line_roomname)) break;
+            //存在するルームを選択したらルームに入出
+            if(ChatRoom.isExistChatroomFile(line_roomname)){
+                EnterRoom(line_roomname);
+                break;
+            }
 
+            //存在しないルームが入力されたらルームを作成するか確認し、ルームを作成する
             println_Message("ルームネーム「" + line_roomname + "」は存在しません.");
+            String input_line = wait_ParticularKeyword("ルームを作成しますか？", new String[]{"yes", "no"});
+            if(input_line.equals("yes")){
+                new ChatRoom(line_roomname);
+                EnterRoom(line_roomname);
+                break;
+            }
         }
 
+
+    }
+
+    private static void EnterRoom(String room_name){
         ChatRoom chatRoom;
-        if(line_roomname.equals("AutoResRoom"))
+        if(room_name.equals("AutoResRoom"))
             chatRoom = new Chatroom_AutoRes();
         else
-            chatRoom = new ChatRoom(line_roomname);
+            chatRoom = new ChatRoom(room_name);
 
         while(true){
             String input_line = inputMessage();
@@ -66,5 +82,30 @@ private static String my_name;
     }
     private static void print_Message(String message){
         System.out.print(message);
+    }
+    private static void print_Array(String[] array){
+        for(int i = 0;i < array.length; i++){
+            if(i != 0) print_Message(", ");
+            print_Message(array[i]);
+        }
+    }
+
+    private static String wait_ParticularKeyword(String output_line, String[] keywords){
+        String input_line = "";
+        while(true){
+            println_Message(output_line);
+            print_Message("入力可能ワード: ");
+            print_Array(keywords);
+            println_Message("");
+
+            input_line = inputMessage();
+            
+            for(String keyword : keywords){
+                if(keyword.equals(input_line)) return input_line;
+            }
+            print_Message("入力可能なワードは");
+            print_Array(keywords);
+            println_Message("です");
+        }
     }
 }
