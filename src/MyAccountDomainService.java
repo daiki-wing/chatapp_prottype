@@ -48,7 +48,7 @@ public class MyAccountDomainService {
     catch(IOException e){
       System.out.println(e);
     }
-    return str;
+    return str.split(",")[1];
   }
   
   //アカウント情報を削除する

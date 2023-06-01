@@ -1,0 +1,22 @@
+RoomName: AutoRes_Room
+
+null: 
+Wed May 31 17:04:59 JST 2023
+Ui_Chan: ‚¤‚¢
+Wed May 31 17:04:59 JST 2023
+null: aaa
+Wed May 31 17:05:10 JST 2023
+Ui_Chan: ‚¤‚¢
+Wed May 31 17:05:10 JST 2023
+name,daiki: aaa
+Wed May 31 17:06:38 JST 2023
+Ui_Chan: ‚¤‚¢
+Wed May 31 17:06:38 JST 2023
+name,daiki: aaa
+Wed May 31 17:16:38 JST 2023
+Ui_Chan: ‚¤‚¢
+Wed May 31 17:16:38 JST 2023
+daiki: aaa
+Wed May 31 17:17:40 JST 2023
+Ui_Chan: ‚¤‚¢
+Wed May 31 17:17:40 JST 2023
